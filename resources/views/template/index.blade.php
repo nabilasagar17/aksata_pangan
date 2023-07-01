@@ -261,6 +261,34 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @if(Request::segment(2)== 'laporan_bantuan_makanan')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_bantuan_makanan')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Bantuan
+                                                    Makanan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_bantuan_dana')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_bantuan_dana')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Bantuan
+                                                    Dana</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         @if(Request::segment(2)== 'laporan_penyaluran_bantuan')
                                         <li class="active">
                                             @else

@@ -62,4 +62,14 @@ class AdminController extends Controller
         }
         return view('admin/laporan_bantuan',['data'=>$data]);
     }
+
+    public function user_list(){
+        $data = DB::table('users')->select('*')->orderby('created_at','desc')->paginate(15);
+        return view('admin/user_list',['data'=>$data]);
+    }
+
+    public function volunteer(){
+        $data = DB::table('volunteer')->select('*')->orderby('created_at','desc')->paginate(15);
+        return view('admin/volunteer',['data'=>$data]);
+    }
 }

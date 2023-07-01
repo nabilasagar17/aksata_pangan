@@ -22,10 +22,10 @@
                         <li class="breadcrumb-item"><a href="#!">Laporan Penyaluran Makanan</a>
                         </li>
                         @elseif(Request::segment(2) == 'laporan_penyaluran_dana')
-                        <li class="breadcrumb-item"><a href="#!">Penyaluran Penyaluran Dana</a>
+                        <li class="breadcrumb-item"><a href="#!">Laporan Penyaluran Dana</a>
                         </li>
                         @else
-                        <li class="breadcrumb-item"><a href="#!">Penyaluran Penyaluran Bantuan</a>
+                        <li class="breadcrumb-item"><a href="#!">Laporan Penyaluran Bantuan</a>
                         </li>
                         @endif
                     </ul>

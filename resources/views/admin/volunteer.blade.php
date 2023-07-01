@@ -7,7 +7,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">Laporan Bantuan Masuk</h5>
+                        <h5 class="m-b-10">Daftar Volunteer</h5>
 
                     </div>
                 </div>
@@ -16,18 +16,9 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Laporan Bantuan</a>
+                        <li class="breadcrumb-item"><a href="#!">Daftar Volunteer</a>
                         </li>
-                        @if(Request::segment(2) == 'laporan_bantuan_masuk')
-                        <li class="breadcrumb-item"><a href="#!">Laporan Bantuan Masuk</a>
-                        </li>
-                        @elseif(Request::segment(2) == 'laporan_bantuan_makanan')
-                        <li class="breadcrumb-item"><a href="#!">Laporan Makanan Masuk</a>
-                        </li>
-                        @else
-                        <li class="breadcrumb-item"><a href="#!">Laporan Dana Masuk</a>
-                        </li>
-                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -45,17 +36,8 @@
                     <!-- Hover table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Laporan Bantuan</h5>
+                            <h5>Daftar Volunteer</h5>
 
-                            <div class="card-header-right">
-                                <ul class="list-unstyled card-option">
-                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
-                                </ul>
-                            </div>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -63,19 +45,26 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Bantuan</th>
-                                            <th>Kategori</th>
-                                            <th>Username</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Alamat</th>
+                                            <th>No.Telp</th>
+                                            <th>Batch</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($data as $datas)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <td scope="row">1</td>
+                                            <td>{{$datas->nama}}</td>
+                                            <td>{{$datas->email}}</td>
+                                            <td>{{$datas->alamat}}</td>
+                                            <td>{{$datas->telp}}</td>
+                                            <td>{{$datas->batch}}</td>
+                                            <td></td>
                                         </tr>
-
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
