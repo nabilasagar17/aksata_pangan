@@ -55,11 +55,6 @@
                     <ul class="show-notification profile-notification">
 
                         <li class="waves-effect waves-light">
-                            <a href="auth-lock-screen.html">
-                                <i class="ti-lock"></i> Lock Screen
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                 <i class="ti-layout-sidebar-left"></i> Logout
