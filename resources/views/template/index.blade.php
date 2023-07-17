@@ -42,6 +42,20 @@
         media="all" />
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/style.css')}}">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
+        rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
+
+
 </head>
 
 <body>
@@ -111,256 +125,284 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg"
+                                    <img class="img-80 img-radius" src="{{asset('img/user.png')}}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+                                        <span id="more-details">Hai, {{Auth::user()->nama}}!<i
+                                                class="fa fa-caret-down"></i></span>
                                     </div>
                                 </div>
 
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
-                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
+
                                             <a href="auth-normal-sign-in.html"><i
                                                     class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="p-15 p-b-0">
-                                <form class="form-material">
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="footer-email" class="form-control" required="">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"><i class="fa fa-search m-r-10"></i>Search
-                                            Friend</label>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Layout</div>
+
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Menu</div>
                             <ul class="pcoded-item pcoded-left-item">
+                                @if(Request::segment(2)== 'dashboard')
                                 <li class="active">
-                                    <a href="index.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                    @else
+                                <li class="">
+                                    @endif
+                                    <a href="{{url('admin/dashboard')}}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="bi bi-house"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                @if(Request::segment(2)== 'food_bank' || Request::segment(2)== 'bantuan_dana' )
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
                                 <li class="pcoded-hasmenu">
+                                    @endif
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                        <span class="pcoded-mtext"
-                                            data-i18n="nav.basic-components.main">Components</span>
+                                        <span class="pcoded-micon"><i class="bi bi-box-arrow-in-down fs-5"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Bantuan
+                                            Masuk</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="accordion.html" class="waves-effect waves-dark">
+                                        @if(Request::segment(2)== 'food_bank')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/food_bank')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Accordion</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Food
+                                                    Bank</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
-                                            <a href="breadcrumb.html" class="waves-effect waves-dark">
+                                        @if(Request::segment(2)== 'bantuan_dana')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/bantuan_dana')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Breadcrumbs</span>
+                                                    data-i18n="nav.basic-components.breadcrumbs">Bantuan Dana</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
-                                            <a href="button.html" class="waves-effect waves-dark">
+                                        <!-- <li class=" ">
+                                            <a href="{{url('admin/input_bantuan')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Button</span>
+                                                    data-i18n="nav.basic-components.breadcrumbs">Input Bantuan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="tabs.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Tabs</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="color.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Color</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="label-badge.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Label Badge</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="tooltip.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Tooltip</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="typography.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Typography</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="notification.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Notification</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="icon-themify.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Themify</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-
+                                        </li> -->
                                     </ul>
                                 </li>
-                            </ul>
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Forms &amp; Tables</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li>
-                                    <a href="form-elements-component.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Form
-                                            Components</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Basic
-                                            Table</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-
-                            </ul>
-
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Chart &amp; Maps</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li>
-                                    <a href="chart.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Chart</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="map-google.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.form-components.main">Maps</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
+                                @if(Request::segment(2)== 'penyaluran_makanan' ||Request::segment(2)== 'penyaluran_dana'
+                                )
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
                                 <li class="pcoded-hasmenu">
+                                    @endif
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Pages</span>
+                                        <span class="pcoded-micon"><i class="bi bi-box-arrow-up-right"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Penyaluran
+                                            Bantuan</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="auth-normal-sign-in.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.alert">Login</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="auth-sign-up.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Register</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="sample-page.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Sample Page</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.other">Other</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Menu Levels</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
+                                        @if(Request::segment(2)== 'penyaluran_makanan')
+                                        <li class="active">
+                                            @else
                                         <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            @endif
+                                            <a href="{{url('admin/penyaluran_makanan')}}"
+                                                class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.menu-levels.menu-level-21">Menu Level 2.1</span>
+                                                    data-i18n="nav.basic-components.alert">Penyaluran Makanan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="pcoded-hasmenu ">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.menu-levels.menu-level-22.main">Menu Level 2.2</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                        <span class="pcoded-mtext"
-                                                            data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Menu
-                                                            Level 3.1</span>
-                                                        <span class="pcoded-mcaret"></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        @if(Request::segment(2)== 'penyaluran_dana')
+                                        <li class="active">
+                                            @else
                                         <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            @endif
+                                            <a href="{{url('admin/penyaluran_dana')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.menu-levels.menu-level-23">Menu Level 2.3</span>
+                                                    data-i18n="nav.basic-components.breadcrumbs">Penyaluran Dana</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
 
                                     </ul>
                                 </li>
+                                @if(Request::segment(2)== 'laporan_bantuan_masuk' ||Request::segment(2)==
+                                'laporan_bantuan_makanan' ||Request::segment(2)== 'laporan_bantuan_dana' ||
+                                Request::segment(2)==
+                                'laporan_penyaluran_dana' || Request::segment(2)== 'laporan_penyaluran_makanan' ||
+                                Request::segment(2)== 'laporan_penyaluran_dana' || Request::segment(2)==
+                                'laporan_penyaluran_bantuan' )
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu">
+                                    @endif
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="bi bi-file-text"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Laporan</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        @if(Request::segment(2)== 'laporan_bantuan_masuk')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_bantuan_masuk')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.alert">Laporan Bantuan Masuk</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_bantuan_makanan')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_bantuan_makanan')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Bantuan
+                                                    Makanan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_bantuan_dana')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_bantuan_dana')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Bantuan
+                                                    Dana</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_penyaluran_bantuan')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_penyaluran_bantuan')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Penyaluran
+                                                    Bantuan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_penyaluran_makanan')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_penyaluran_makanan')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Penyaluran
+                                                    Makanan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_penyaluran_dana')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_penyaluran_dana')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Penyaluran
+                                                    Dana</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @if(Request::segment(2)== 'user_list' || Request::segment(2)==
+                                'volunteer' )
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu">
+                                    @endif
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="bi bi-people"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">User
+                                            Management</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        @if(Request::segment(2)== 'user_list')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/user_list')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">User
+                                                    List</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'volunteer')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/volunteer')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Volunteer</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <!-- <li class=" ">
+                                            <a href="{{url('admin/bantuan_dana')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Pemberi</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="{{url('admin/bantuan_dana')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Penerima</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </li>
+
                             </ul>
+
                         </div>
                     </nav>
                     @yield('content')
@@ -371,45 +413,7 @@
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
     <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="http://www.google.com/chrome/">
-                        <img src="assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.opera.com">
-                        <img src="assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.apple.com/safari/">
-                        <img src="assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
+  
     <![endif]-->
     <!-- Warning Section Ends -->
 
