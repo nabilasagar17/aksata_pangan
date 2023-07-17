@@ -48,14 +48,25 @@
                             <h5>Laporan Bantuan</h5>
 
                             <div class="card-header-right">
+<<<<<<< HEAD
                                 <a type='button' href="{{url('admin/print_laporan_masuk')}}"
                                     class="btn btn-mat waves-effect waves-light btn-primary ">Print</a>
+=======
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                    <li><i class="fa fa-trash close-card"></i></li>
+                                </ul>
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                             </div>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
+<<<<<<< HEAD
                                         @if(Request::segment(2) == 'laporan_bantuan_dana')
                                         <tr>
                                             <th>No</th>
@@ -130,6 +141,22 @@
                                         </tr>
                                         @endif
                                         @endforeach
+=======
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Bantuan</th>
+                                            <th>Kategori</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 
                                     </tbody>
                                 </table>

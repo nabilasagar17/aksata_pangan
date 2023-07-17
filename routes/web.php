@@ -40,6 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/food_bank',[AdminController::class,'master_stok']);
     Route::get('/bantuan_dana',[AdminController::class,'master_stok']);
    
+<<<<<<< HEAD
     Route::get('/preview_barang_masuk',[AdminController::class,'preview_barang_masuk']);
     Route::post('/insert_preview_bantuan',[AdminController::class,'insert_preview_bantuan']);
     Route::get('/insert_data_donatur',[AdminController::class,'insert_data_donatur']);
@@ -47,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/preview_barang_keluar',[AdminController::class,'preview_barang_keluar']);
     Route::post('/insert_preview_bantuan_keluar',[AdminController::class,'insert_preview_bantuan_keluar']);
     Route::get('/insert_data_penerima',[AdminController::class,'insert_data_penerima']);
+=======
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 
     Route::post('/insert_bantuan',[AdminController::class,'insert_bantuan']);
     Route::post('/delete_bantuan/{id}',[AdminController::class,'delete_bantuan']);

@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Auth;
+<<<<<<< HEAD
 use Illuminate\Support\Carbon;
 
+=======
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 
 class AdminController extends Controller
 {
@@ -68,6 +71,14 @@ class AdminController extends Controller
     public function user_list(){
         $data = DB::table('users')->select('*')->orderby('created_at','desc')->paginate(15);
         return view('admin/user_list',['data'=>$data]);
+<<<<<<< HEAD
+=======
+    }
+
+    public function volunteer(){
+        $data = DB::table('volunteer')->select('*')->orderby('created_at','desc')->paginate(15);
+        return view('admin/volunteer',['data'=>$data]);
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
     }
 
     public function volunteer(){

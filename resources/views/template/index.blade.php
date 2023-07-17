@@ -44,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/style.css')}}">
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<<<<<<< HEAD
 
 
 
@@ -56,6 +57,8 @@
     <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
 
 
+=======
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 </head>
 
 <body>
@@ -195,6 +198,7 @@
                                         </li>
                                         <!-- <li class=" ">
                                             <a href="{{url('admin/input_bantuan')}}" class="waves-effect waves-dark">
+<<<<<<< HEAD
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
                                                     data-i18n="nav.basic-components.breadcrumbs">Input Bantuan</span>
@@ -225,6 +229,38 @@
                                                 class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
+=======
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Input Bantuan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li> -->
+                                    </ul>
+                                </li>
+                                @if(Request::segment(2)== 'penyaluran_makanan' ||Request::segment(2)== 'penyaluran_dana'
+                                )
+                                <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu">
+                                    @endif
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="bi bi-box-arrow-up-right"></i></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Penyaluran
+                                            Bantuan</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        @if(Request::segment(2)== 'penyaluran_makanan')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/penyaluran_makanan')}}"
+                                                class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                                     data-i18n="nav.basic-components.alert">Penyaluran Makanan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>

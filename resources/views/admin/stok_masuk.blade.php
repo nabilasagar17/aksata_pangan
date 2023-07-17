@@ -54,12 +54,24 @@ use Illuminate\Support\Carbon;
                             </div>
 
                             <div class="card-header-right">
+<<<<<<< HEAD
 
                                 <a type='button' href="{{url('admin/preview_barang_masuk')}}"
                                     class="btn btn-mat waves-effect waves-light btn-primary ">Input Data</a>
                                 <a type='button' href="{{url('admin/preview_barang_keluar')}}"
                                     class="btn btn-mat waves-effect waves-light btn-danger">Penyaluran Barang</a>
 
+=======
+                                <button class="btn btn-mat waves-effect waves-light btn-primary "><i
+                                        class="ti-plus"></i>Tambah</button>
+                                <!-- <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                    <li><i class="fa fa-trash close-card"></i></li>
+                                </ul> -->
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                             </div>
                         </div>
                         <div class="card-block table-border-style">
@@ -156,6 +168,7 @@ use Illuminate\Support\Carbon;
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 <style>
 .kbw-signature {
@@ -180,4 +193,6 @@ $('#clear').click(function(e) {
     $("#signature64").val('');
 });
 </script>
+=======
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 @endsection

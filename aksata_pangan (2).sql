@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
+<<<<<<< HEAD:aksata_pangan (2).sql
 -- Generation Time: Jul 17, 2023 at 01:20 AM
+=======
+-- Generation Time: Jul 05, 2023 at 01:13 PM
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4:aksata_pangan.sql
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -262,6 +266,37 @@ CREATE TABLE IF NOT EXISTS `view_stok_keluar` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `view_stok_keluar`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `view_stok_keluar`;
+CREATE TABLE IF NOT EXISTS `view_stok_keluar` (
+`id` int(11)
+,`id_volunteer` int(11)
+,`id_stok_masuk` int(11)
+,`qty` decimal(10,0)
+,`qty_sisa` decimal(10,0)
+,`keperluan` varchar(30)
+,`tgl_masuk` datetime
+,`pengiriman` varchar(100)
+,`selesai` tinyint(1)
+,`keterangan` varchar(200)
+,`created_at` datetime
+,`created_by` varchar(100)
+,`updated_at` datetime
+,`updated_by` varchar(100)
+,`path_ttd` varchar(150)
+,`path_gambar` varchar(150)
+,`nama` varchar(150)
+,`exp_date` datetime
+,`kategori` varchar(50)
+,`nama_volunteer` varchar(150)
+,`no_telp_volunteer` varchar(15)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `volunteer`
 --
 
@@ -281,6 +316,7 @@ CREATE TABLE IF NOT EXISTS `volunteer` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD:aksata_pangan (2).sql
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -289,6 +325,9 @@ CREATE TABLE IF NOT EXISTS `volunteer` (
 
 INSERT INTO `volunteer` (`id`, `nama`, `batch`, `email`, `password`, `alamat`, `no_telp`, `is_active`, `tgl_gabung`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (1, 'Sania', 1, 'sania@gmail.com', NULL, NULL, '081256789876', NULL, '2023-07-15 05:44:51', '2023-07-15 05:44:51', '1', NULL, NULL);
+=======
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4:aksata_pangan.sql
 
 -- --------------------------------------------------------
 
@@ -298,7 +337,11 @@ INSERT INTO `volunteer` (`id`, `nama`, `batch`, `email`, `password`, `alamat`, `
 DROP TABLE IF EXISTS `view_stok_keluar`;
 
 DROP VIEW IF EXISTS `view_stok_keluar`;
+<<<<<<< HEAD:aksata_pangan (2).sql
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_stok_keluar`  AS  select `stok_keluar`.`id` AS `id`,`stok_keluar`.`id_volunteer` AS `id_volunteer`,`stok_keluar`.`id_stok_masuk` AS `id_stok_masuk`,`stok_keluar`.`qty` AS `qty`,`stok_keluar`.`qty_sisa` AS `qty_sisa`,`stok_keluar`.`keperluan` AS `keperluan`,`stok_keluar`.`tgl_masuk` AS `tgl_masuk`,`stok_keluar`.`pengiriman` AS `pengiriman`,`stok_keluar`.`nama_penerima` AS `nama_penerima`,`stok_keluar`.`alamat_penerima` AS `alamat_penerima`,`stok_keluar`.`selesai` AS `selesai`,`stok_keluar`.`keterangan` AS `keterangan`,`stok_keluar`.`created_at` AS `created_at`,`stok_keluar`.`created_by` AS `created_by`,`stok_keluar`.`updated_at` AS `updated_at`,`stok_keluar`.`updated_by` AS `updated_by`,`stok_keluar`.`path_ttd` AS `path_ttd`,`stok_keluar`.`path_gambar` AS `path_gambar`,`stok_masuk`.`nama` AS `nama`,`stok_masuk`.`exp_date` AS `exp_date`,`stok_masuk`.`kategori` AS `kategori`,`volunteer`.`nama` AS `nama_volunteer`,`volunteer`.`no_telp` AS `no_telp_volunteer` from ((`stok_keluar` join `stok_masuk` on((`stok_masuk`.`id` = `stok_keluar`.`id_stok_masuk`))) join `volunteer` on((`volunteer`.`id` = `stok_keluar`.`id_volunteer`))) ;
+=======
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_stok_keluar`  AS  select `stok_keluar`.`id` AS `id`,`stok_keluar`.`id_volunteer` AS `id_volunteer`,`stok_keluar`.`id_stok_masuk` AS `id_stok_masuk`,`stok_keluar`.`qty` AS `qty`,`stok_keluar`.`qty_sisa` AS `qty_sisa`,`stok_keluar`.`keperluan` AS `keperluan`,`stok_keluar`.`tgl_masuk` AS `tgl_masuk`,`stok_keluar`.`pengiriman` AS `pengiriman`,`stok_keluar`.`selesai` AS `selesai`,`stok_keluar`.`keterangan` AS `keterangan`,`stok_keluar`.`created_at` AS `created_at`,`stok_keluar`.`created_by` AS `created_by`,`stok_keluar`.`updated_at` AS `updated_at`,`stok_keluar`.`updated_by` AS `updated_by`,`stok_keluar`.`path_ttd` AS `path_ttd`,`stok_keluar`.`path_gambar` AS `path_gambar`,`stok_masuk`.`nama` AS `nama`,`stok_masuk`.`exp_date` AS `exp_date`,`stok_masuk`.`kategori` AS `kategori`,`volunteer`.`nama` AS `nama_volunteer`,`volunteer`.`no_telp` AS `no_telp_volunteer` from ((`stok_keluar` join `stok_masuk` on((`stok_masuk`.`id` = `stok_keluar`.`id_stok_masuk`))) join `volunteer` on((`volunteer`.`id` = `stok_keluar`.`id_volunteer`))) ;
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4:aksata_pangan.sql
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -36,6 +36,7 @@
                     <!-- Hover table card start -->
                     <div class="card">
                         <div class="card-header">
+<<<<<<< HEAD
                             <div class="col-lg-8">
                                 <h5>User List</h5>
                             </div>
@@ -49,6 +50,10 @@
                                     class="btn btn-mat waves-effect waves-light btn-primary">Print</a>
 
                             </div>
+=======
+                            <h5>User List</h5>
+
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -60,21 +65,31 @@
                                             <th>Email</th>
                                             <th>Alamat</th>
                                             <th>No.Telp</th>
+<<<<<<< HEAD
                                             <th>Role User</th>
                                             <th>Status</th>
+=======
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                         <?php  $no = 15 * ( (Request::input('page') != '' ? Request::input('page') : 1) - 1) + 1; ?>
 
                                         @foreach($data as $datas)
                                         <tr>
                                             <td scope="row">{{$no++}}</td>
+=======
+                                        @foreach($data as $datas)
+                                        <tr>
+                                            <td scope="row">1</td>
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                             <td>{{$datas->nama}}</td>
                                             <td>{{$datas->email}}</td>
                                             <td>{{$datas->alamat}}</td>
                                             <td>{{$datas->telp}}</td>
+<<<<<<< HEAD
                                             <td>{{$datas->role_user}}</td>
                                             <td>@if($datas->is_active == '1')
                                                 <span class="badge bg-success">Aktif</span>
@@ -87,6 +102,9 @@
                                                 <button class="btn  btn-danger btn-sm"><i
                                                         class="ti-trash fa-sm"></i></button>
                                             </td>
+=======
+                                            <td></td>
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                         </tr>
                                         @endforeach
                                     </tbody>

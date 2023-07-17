@@ -33,6 +33,7 @@
                 <div class="page-body">
 
 
+<<<<<<< HEAD
                     <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -118,6 +119,13 @@
                                     class="btn btn-mat waves-effect waves-light btn-primary">Print</a>
 
                             </div>
+=======
+                    <!-- Hover table card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Daftar Volunteer</h5>
+
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -134,6 +142,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                         <?php  $no = 15 * ( (Request::input('page') != '' ? Request::input('page') : 1) - 1) + 1; ?>
 
                                         @foreach($data as $datas)
@@ -149,6 +158,17 @@
                                                 <button class="btn  btn-danger btn-sm"><i
                                                         class="ti-trash fa-sm"></i></button>
                                             </td>
+=======
+                                        @foreach($data as $datas)
+                                        <tr>
+                                            <td scope="row">1</td>
+                                            <td>{{$datas->nama}}</td>
+                                            <td>{{$datas->email}}</td>
+                                            <td>{{$datas->alamat}}</td>
+                                            <td>{{$datas->telp}}</td>
+                                            <td>{{$datas->batch}}</td>
+                                            <td></td>
+>>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                         </tr>
                                         @endforeach
                                     </tbody>
