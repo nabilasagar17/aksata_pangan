@@ -100,8 +100,8 @@ use Illuminate\Support\Carbon;
                                                     <td>{{$datas->satuan_barang}}</td>
                                                     <td>{{$datas->harga}}</td>
                                                     <td>{{$datas->pengiriman}}</td>
-                                                    <td>{{$datas->exp_date}}</td>
-                                                    <td>{{$datas->tgl_masuk}}</td>
+                                                    <td>{{{{date_format($datas->exp_date,"Y/m/d ")}}}</td>
+                                                    <td>{{date_format($datas->tgl_masuk,"Y/m/d ")}}</td>
                                                     <td><button class="btn  btn-danger btn-sm"><i
                                                                 class="ti-trash fa-sm"></i></button>
                                                     </td>

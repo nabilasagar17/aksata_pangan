@@ -30,6 +30,29 @@
             <div class="page-wrapper">
                 <!-- Page-body start -->
                 <div class="page-body">
+                    <form action="" method="get">
+                        <div class="row">
+                            <div class="col-lg-auto my-3">
+
+                                <select name="tahun" class="form-control">
+                                    <option value="Tahun">Tahun
+                                    </option>
+                                    @for($i = 2022 ;$i <=2030;$i++) @if(Request::input('tahun')==$i ) <option
+                                        value="{{Request::input('tahun')}}" selected>
+                                        {{$i}}
+                                        </option>@else
+                                        <option value="{{$i}}">{{$i}}
+                                        </option>@endif
+                                        @endfor
+
+                                </select>
+                            </div>
+
+                            <div class="col-lg-auto my-3">
+                                <button type="submit" class="btn  btn-primary">Filter</button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         <!-- task, page, download counter  start -->
                         <div class="col-xl-3 col-md-6">
@@ -39,337 +62,247 @@
                                         <div class="col-8">
                                             <h4 class="text-c-purple">{{number_format(@$total_dana[0]->total_dana)}}
                                             </h4>
-                                            <h6 class="text-muted m-b-0">Total Bantuan Dana Tahun
-                                                {{@$total_dana[0]->tahun}}</h6>
+                                            <h6 class="text-muted m-b-0">Rupiah/Tahun
+                                            </h6>
                                         </div>
                                         <div class="col-4 text-right">
                                             <i class="fa fa-bar-chart f-28"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-c-purple">
-                                    <div class="row align-items-center">
-                                        <div class="col-9">
-                                            <p class="text-white m-b-0">% change</p>
+                                <a href="{{url('admin/detail_dana_masuk_widget')}}">
+                                    <div class="card-footer bg-c-purple">
+                                        <div class="row align-items-center">
+                                            <div class="col-9">
+                                                <p class="text-white m-b-0">Total Dana Masuk</p>
+                                            </div>
+                                            <div class="col-3 text-right">
+                                                <i class="fa fa-line-chart text-white f-16"></i>
+                                            </div>
                                         </div>
-                                        <div class="col-3 text-right">
-                                            <i class="fa fa-line-chart text-white f-16"></i>
-                                        </div>
-                                    </div>
+                                </a>
+                            </div>
 
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="row align-items-center">
-                                        <div class="col-8">
-                                            <h4 class="text-c-green">290+</h4>
-                                            <h6 class="text-muted m-b-0">Page Views</h6>
-                                        </div>
-                                        <div class="col-4 text-right">
-                                            <i class="fa fa-file-text-o f-28"></i>
-                                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <h4 class="text-c-blue">{{$bantuan_masuk}}</h4>
+                                        <h6 class="text-muted m-b-0">Bantuan/Tahun</h6>
                                     </div>
-                                </div>
-                                <div class="card-footer bg-c-green">
-                                    <div class="row align-items-center">
-                                        <div class="col-9">
-                                            <p class="text-white m-b-0">% change</p>
-                                        </div>
-                                        <div class="col-3 text-right">
-                                            <i class="fa fa-line-chart text-white f-16"></i>
-                                        </div>
+                                    <div class="col-4 text-right">
+                                        <i class="fa fa-hand-o-down f-28"></i>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="row align-items-center">
-                                        <div class="col-8">
-                                            <h4 class="text-c-red">145</h4>
-                                            <h6 class="text-muted m-b-0">Task Completed</h6>
-                                        </div>
-                                        <div class="col-4 text-right">
-                                            <i class="fa fa-calendar-check-o f-28"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-c-red">
-                                    <div class="row align-items-center">
-                                        <div class="col-9">
-                                            <p class="text-white m-b-0">% change</p>
-                                        </div>
-                                        <div class="col-3 text-right">
-                                            <i class="fa fa-line-chart text-white f-16"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="row align-items-center">
-                                        <div class="col-8">
-                                            <h4 class="text-c-blue">500</h4>
-                                            <h6 class="text-muted m-b-0">Downloads</h6>
-                                        </div>
-                                        <div class="col-4 text-right">
-                                            <i class="fa fa-hand-o-down f-28"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                            <a href="{{url('admin/detail_makanan_masuk_widget')}}">
                                 <div class="card-footer bg-c-blue">
                                     <div class="row align-items-center">
                                         <div class="col-9">
-                                            <p class="text-white m-b-0">% change</p>
+                                            <p class="text-white m-b-0">Bantuan Makanan Masuk</p>
                                         </div>
                                         <div class="col-3 text-right">
                                             <i class="fa fa-line-chart text-white f-16"></i>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <!-- task, page, download counter  end -->
-
-
-                        <!--  project and team member start -->
-                        <div class="col-xl-8 col-md-12">
-                            <div class="card table-card">
-                                <div class="card-header">
-                                    <h5>Projects</h5>
-                                    <div class="card-header-right">
-                                        <ul class="list-unstyled card-option">
-                                            <li><i class="fa fa fa-wrench open-card-option"></i>
-                                            </li>
-                                            <li><i class="fa fa-window-maximize full-card"></i></li>
-                                            <li><i class="fa fa-minus minimize-card"></i></li>
-                                            <li><i class="fa fa-refresh reload-card"></i></li>
-                                            <li><i class="fa fa-trash close-card"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-block">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <div class="chk-option">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label class="check-task">
-                                                                    <input type="checkbox" value="">
-                                                                    <span class="cr">
-                                                                        <i class="cr-icon fa fa-check txt-default"></i>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        Assigned
-                                                    </th>
-                                                    <th>Name</th>
-                                                    <th>Due Date</th>
-                                                    <th class="text-right">Priority</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="chk-option">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label class="check-task">
-                                                                    <input type="checkbox" value="">
-                                                                    <span class="cr">
-                                                                        <i class="cr-icon fa fa-check txt-default"></i>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-inline-block align-middle">
-                                                            <img src="assets/images/avatar-4.jpg" alt="user image"
-                                                                class="img-radius img-40 align-top m-r-15">
-                                                            <div class="d-inline-block">
-                                                                <h6>John Deo</h6>
-                                                                <p class="text-muted m-b-0">Graphics
-                                                                    Designer</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Able Pro</td>
-                                                    <td>Jun, 26</td>
-                                                    <td class="text-right"><label class="label label-danger">Low</label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="chk-option">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label class="check-task">
-                                                                    <input type="checkbox" value="">
-                                                                    <span class="cr">
-                                                                        <i class="cr-icon fa fa-check txt-default"></i>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-inline-block align-middle">
-                                                            <img src="assets/images/avatar-5.jpg" alt="user image"
-                                                                class="img-radius img-40 align-top m-r-15">
-                                                            <div class="d-inline-block">
-                                                                <h6>Jenifer Vintage</h6>
-                                                                <p class="text-muted m-b-0">Web
-                                                                    Designer</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Mashable</td>
-                                                    <td>March, 31</td>
-                                                    <td class="text-right"><label
-                                                            class="label label-primary">high</label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="chk-option">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label class="check-task">
-                                                                    <input type="checkbox" value="">
-                                                                    <span class="cr">
-                                                                        <i class="cr-icon fa fa-check txt-default"></i>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-inline-block align-middle">
-                                                            <img src="assets/images/avatar-3.jpg" alt="user image"
-                                                                class="img-radius img-40 align-top m-r-15">
-                                                            <div class="d-inline-block">
-                                                                <h6>William Jem</h6>
-                                                                <p class="text-muted m-b-0">
-                                                                    Developer</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Flatable</td>
-                                                    <td>Aug, 02</td>
-                                                    <td class="text-right"><label
-                                                            class="label label-success">medium</label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="chk-option">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label class="check-task">
-                                                                    <input type="checkbox" value="">
-                                                                    <span class="cr">
-                                                                        <i class="cr-icon fa fa-check txt-default"></i>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-inline-block align-middle">
-                                                            <img src="assets/images/avatar-2.jpg" alt="user image"
-                                                                class="img-radius img-40 align-top m-r-15">
-                                                            <div class="d-inline-block">
-                                                                <h6>David Jones</h6>
-                                                                <p class="text-muted m-b-0">
-                                                                    Developer</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Guruable</td>
-                                                    <td>Sep, 22</td>
-                                                    <td class="text-right"><label
-                                                            class="label label-primary">high</label>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="text-right m-r-20">
-                                            <a href="#!" class=" b-b-primary text-primary">View all
-                                                Projects</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-12">
-                            <div class="card ">
-                                <div class="card-header">
-                                    <h5>Team Members</h5>
-                                    <div class="card-header-right">
-                                        <ul class="list-unstyled card-option">
-                                            <li><i class="fa fa fa-wrench open-card-option"></i>
-                                            </li>
-                                            <li><i class="fa fa-window-maximize full-card"></i></li>
-                                            <li><i class="fa fa-minus minimize-card"></i></li>
-                                            <li><i class="fa fa-refresh reload-card"></i></li>
-                                            <li><i class="fa fa-trash close-card"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-block">
-                                    <div class="align-middle m-b-30">
-                                        <img src="assets/images/avatar-2.jpg" alt="user image"
-                                            class="img-radius img-40 align-top m-r-15">
-                                        <div class="d-inline-block">
-                                            <h6>David Jones</h6>
-                                            <p class="text-muted m-b-0">Developer</p>
-                                        </div>
-                                    </div>
-                                    <div class="align-middle m-b-30">
-                                        <img src="assets/images/avatar-1.jpg" alt="user image"
-                                            class="img-radius img-40 align-top m-r-15">
-                                        <div class="d-inline-block">
-                                            <h6>David Jones</h6>
-                                            <p class="text-muted m-b-0">Developer</p>
-                                        </div>
-                                    </div>
-                                    <div class="align-middle m-b-30">
-                                        <img src="assets/images/avatar-3.jpg" alt="user image"
-                                            class="img-radius img-40 align-top m-r-15">
-                                        <div class="d-inline-block">
-                                            <h6>David Jones</h6>
-                                            <p class="text-muted m-b-0">Developer</p>
-                                        </div>
-                                    </div>
-                                    <div class="align-middle m-b-30">
-                                        <img src="assets/images/avatar-4.jpg" alt="user image"
-                                            class="img-radius img-40 align-top m-r-15">
-                                        <div class="d-inline-block">
-                                            <h6>David Jones</h6>
-                                            <p class="text-muted m-b-0">Developer</p>
-                                        </div>
-                                    </div>
-                                    <div class="align-middle m-b-10">
-                                        <img src="assets/images/avatar-5.jpg" alt="user image"
-                                            class="img-radius img-40 align-top m-r-15">
-                                        <div class="d-inline-block">
-                                            <h6>David Jones</h6>
-                                            <p class="text-muted m-b-0">Developer</p>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="#!" class="b-b-primary text-primary">View all
-                                            Projects</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  project and team member end -->
                     </div>
+
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <h4 class="text-c-green">{{$dibagikan}}</h4>
+                                        <h6 class="text-muted m-b-0">Paket/Tahun</h6>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <i class="fa fa-file-text-o f-28"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{url('admin/detail_penyaluran_makanan_widget')}}">
+                                <div class="card-footer bg-c-green">
+                                    <div class="row align-items-center">
+                                        <div class="col-9">
+                                            <p class="text-white m-b-0">Total Bantuan Dibagikan</p>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <i class="fa fa-line-chart text-white f-16"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <h4 class="text-c-red">Rp. {{number_format($dana)}}</h4>
+                                        <h6 class="text-muted m-b-0">Rupiah/Tahun</h6>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <i class="fa fa-calendar-check-o f-28"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{url('admin/detail_penyaluran_dana_widget')}}">
+                                <div class="card-footer bg-c-red">
+                                    <div class="row align-items-center">
+                                        <div class="col-9">
+                                            <p class="text-white m-b-0">Total Dana Dikeluarkan</p>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <i class="fa fa-line-chart text-white f-16"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- task, page, download counter  end -->
+
+
+                    <!--  project and team member start -->
+                    <div class="col-xl-8 col-md-12">
+                        <div class="card table-card">
+                            <div class="card-header">
+                                <h5>Penyaluran Bantuan</h5>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="fa fa fa-wrench open-card-option"></i>
+                                        </li>
+                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                        <li><i class="fa fa-trash close-card"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Penerima</th>
+                                                <th>Alamat Penerima</th>
+                                                <th>Nama Bantuan</th>
+                                                <th>Jumlah</th>
+                                                <th>Proses</th>
+                                                <th>Pengiriman</th>
+                                                <th>Keterangan</th>
+
+                                                <th>Gambar</th>
+                                                <th>Tanda Tangan</th>
+                                                <th>Tgl.Dibuat</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php  $no = 5 * ( (Request::input('page') != '' ? Request::input('page') : 1) - 1) + 1; ?>
+
+                                            @foreach($data as $datas)
+                                            <tr>
+                                                <th scope="row">{{$no++}}</th>
+                                                <td>{{$datas->nama_penerima}}</td>
+                                                <td>{{$datas->alamat_penerima}}</td>
+
+                                                <td>{{$datas->nama}}</td>
+                                                <td>{{$datas->qty}}</td>
+                                                <td>@if($datas->selesai == '1')
+                                                    <span class="badge bg-success">Dibagikan</span>
+                                                    @else
+                                                    <span class="badge bg-warning">Belum Dibagikan</span>
+                                                    @endif
+                                                </td>
+
+                                                <td>{{$datas->pengiriman}}</td>
+                                                <td>{{$datas->keterangan}}</td>
+                                                <td>@if($datas->path_gambar != "")
+                                                    <div class="d-flex align-items-center">
+                                                        <img width="150" height="100"
+                                                            src="{{asset('img/bukti_keluar/'. $datas->path_gambar)}}"
+                                                            alt="" />
+                                                    </div>
+
+                                                    @endif
+                                                </td>
+                                                @if($datas->path_ttd == "")
+                                                <td>
+                                                </td>
+                                                @else
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+
+                                                        <img width="150" height="100"
+                                                            src="{{asset('file_ttd_keluar/'. $datas->path_ttd)}}"
+                                                            alt="" />
+                                                    </div>
+                                                </td>
+                                                @endif
+                                                <td>{{date('d-m-Y', strtotime($datas->created_at))}}</td>
+
+                                            </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="m-datatable__pager m-datatable--paging-loaded clearfix my-2">
+                                    {!! $data->appends(Request::all())->links() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-12">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5>Daftar Volunteer</h5>
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="fa fa fa-wrench open-card-option"></i>
+                                        </li>
+                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                        <li><i class="fa fa-trash close-card"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                @foreach($volunteer as $volunteers)
+                                <div class="align-middle m-b-30">
+                                    <img src="{{url('img/users.png')}}" alt="user image"
+                                        class="img-radius img-40 align-top m-r-15">
+                                    <div class="d-inline-block">
+                                        <h6>{{$volunteers->nama}}</h6>
+                                        <p class="text-muted m-b-0">Batch : {{$volunteers->batch}}</p>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--  project and team member end -->
                 </div>
-                <!-- Page-body end -->
             </div>
-            <div id="styleSelector"> </div>
+            <!-- Page-body end -->
         </div>
+        <div id="styleSelector"> </div>
     </div>
+</div>
 </div>
 
 @endsection

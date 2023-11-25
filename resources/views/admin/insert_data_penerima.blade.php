@@ -41,7 +41,42 @@ use Illuminate\Support\Carbon;
                 <!-- Page-body start -->
                 <div class="page-body">
 
+                    <!-- Start Modal Hapus -->
 
+                    <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Preview</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{url('admin/delete_preview_keluar')}}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 my-2">
+                                                <h6> Hapus data preview ini?
+                                                </h6>
+                                                <input type="text" name="id" hidden>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Ya, Hapus</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End modal hapus -->
 
                     <!-- Hover table card start -->
                     <div class="row">
@@ -75,10 +110,10 @@ use Illuminate\Support\Carbon;
                                                     <th>Kategori</th>
                                                     <th>Qty</th>
 
-                                                    <th>Berat</th>
+
                                                     <th>Satuan Barang</th>
-                                                    <th>Harga</th>
-                                                    <th>Pengiriman</th>
+                                                    <th>Total</th>
+
                                                     <th>Tgl.Exp</th>
                                                     <th>Tgl.Masuk</th>
                                                     <th>Aksi</th>
@@ -94,18 +129,20 @@ use Illuminate\Support\Carbon;
                                                     <td scope="row">{{$no++}}</td>
                                                     <td>{{$datas->nama}}</td>
                                                     <td>{{$datas->kategori}}</td>
-                                                    <td>{{$datas->qty}}</td>
+                                                    @if($datas->kategori == 'makanan')
+                                                    <td>{{number_format($datas->qty)}}</td>
+                                                    @else
+                                                    <td></td>
+                                                    @endif
 
-                                                    <td>{{$datas->berat}}</td>
                                                     <td>{{$datas->satuan_barang}}</td>
-                                                    <td>{{$datas->harga}}</td>
-                                                    <td>{{$datas->pengiriman}}</td>
-                                                    <td>{{$datas->exp_date}}</td>
-                                                    <td>{{$datas->tgl_masuk}}</td>
-                                                    <td><button class="btn  btn-succes btn-sm"><i
+                                                    <td>Rp.{{number_format($datas->total)}}</td>
+
+                                                    <td>{{date('d-m-Y', strtotime($datas->exp_date))}}</td>
+                                                    <td>{{date('d-m-Y', strtotime($datas->tgl_masuk))}}</td>
+                                                    <td><button onClick="hapus('{{ $datas->id}}')"
+                                                            class="btn  btn-danger btn-sm"><i
                                                                 class="ti-trash fa-sm"></i></button>
-                                                        <button class="btn  btn-danger btn-sm"><i
-                                                                class="ti-minus fa-sm"></i></button>
                                                     </td>
                                                 </tr>
 
@@ -121,23 +158,35 @@ use Illuminate\Support\Carbon;
                             <div class="card">
                                 <div class="card-header">
                                     <div class="col-lg-8">
-                                        <h5>Input Data Penerima</h5>
+                                        <h5>Input Detail</h5>
                                     </div>
-                                    <form action="{{url('admin/insert_bantuan')}}" method="post"
+                                    <form action="{{url('admin/insert_bantuan_keluar')}}" method="post"
                                         multipart="multipart/form-data">
                                         @csrf
                                         <div class="row my-3">
-                                            <div class="col-sm-12 ">
+                                            <!-- <div class="col-sm-12 ">
                                                 <label class="col-sm-12  col-form-label">Nama Penerima</label>
                                                 <div class="col-sm-12 mb-3">
                                                     <input type="text" name="nama" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="col-sm-12 ">
-                                                <label class="col-sm-12  col-form-label">Email Penerima</label>
+                                                <label class="col-sm-12  col-form-label">Keperluan</label>
                                                 <div class="col-sm-12 mb-3">
-                                                    <input type="email" name="email" class="form-control">
+                                                    <select name="keperluan" class="form-control">
+                                                        <option>Pilih keperluan</option>
+                                                        <option value="Pembagian Pangan">Pembagian Pangan
+                                                        </option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 ">
+                                                <label class="col-sm-12  col-form-label">Nama Penerima</label>
+                                                <div class="col-sm-12 mb-3">
+                                                    <input type="text" name="nama" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 ">
@@ -152,7 +201,7 @@ use Illuminate\Support\Carbon;
                                                     <Textarea type="text" name="alamat" class="form-control"></Textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 ">
+                                            <!-- <div class="col-sm-12 ">
                                                 <label class="col-sm-12  col-form-label">Foto Bukti Terima</label>
                                                 <div class="col-sm-12 mb-3">
                                                     <input type="file" id="myfile" name="file_path">
@@ -168,7 +217,7 @@ use Illuminate\Support\Carbon;
                                                     <textarea id="signature64" name="signed"
                                                         style="display: none"></textarea>
                                                 </div>
-                                            </div>
+                                            </div>  -->
                                             <div class="col-sm-12 ">
                                                 <button type="submit" class="btn btn-primary float-right">Next</a>
                                             </div>
@@ -220,5 +269,11 @@ $('#clear').click(function(e) {
     sig.signature('clear');
     $("#signature64").val('');
 });
+
+function hapus(id) {
+    $('#hapus').modal('show');
+    $('input[name="id"]').val(id);
+
+}
 </script>
 @endsection

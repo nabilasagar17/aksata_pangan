@@ -19,7 +19,7 @@
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="codedthemes" />
     <!-- Favicon icon -->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{url('img/logo.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
@@ -44,7 +44,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('template/assets/css/style.css')}}">
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<<<<<<< HEAD
 
 
 
@@ -57,8 +56,6 @@
     <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
 
 
-=======
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 </head>
 
 <body>
@@ -131,20 +128,11 @@
                                     <img class="img-80 img-radius" src="{{asset('img/user.png')}}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">Hai, {{Auth::user()->nama}}!<i
-                                                class="fa fa-caret-down"></i></span>
+                                        <span id="more-details">Hai, {{Auth::user()->nama}}!</span>
                                     </div>
                                 </div>
 
-                                <div class="main-menu-content">
-                                    <ul>
-                                        <li class="more-details">
 
-                                            <a href="auth-normal-sign-in.html"><i
-                                                    class="ti-layout-sidebar-left"></i>Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
 
                             <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Menu</div>
@@ -160,6 +148,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                @if(Auth::user()->role_user == 'admin' || Auth::user()->role_user == 'ceo' )
                                 @if(Request::segment(2)== 'food_bank' || Request::segment(2)== 'bantuan_dana' )
                                 <li class="pcoded-hasmenu active pcoded-trigger">
                                     @else
@@ -184,6 +173,7 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @if(Auth::user()->role_user != 'volunteer')
                                         @if(Request::segment(2)== 'bantuan_dana')
                                         <li class="active">
                                             @else
@@ -195,10 +185,9 @@
                                                     data-i18n="nav.basic-components.breadcrumbs">Bantuan Dana</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
+                                        </li>@endif
                                         <!-- <li class=" ">
                                             <a href="{{url('admin/input_bantuan')}}" class="waves-effect waves-dark">
-<<<<<<< HEAD
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
                                                     data-i18n="nav.basic-components.breadcrumbs">Input Bantuan</span>
@@ -207,6 +196,8 @@
                                         </li> -->
                                     </ul>
                                 </li>
+                                @endif
+
                                 @if(Request::segment(2)== 'penyaluran_makanan' ||Request::segment(2)== 'penyaluran_dana'
                                 )
                                 <li class="pcoded-hasmenu active pcoded-trigger">
@@ -220,38 +211,21 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        @if(Request::segment(2)== 'penyaluran_makanan')
+
+                                        @if(Request::segment(2)== 'list_bantuan')
                                         <li class="active">
                                             @else
                                         <li class="">
                                             @endif
-                                            <a href="{{url('admin/penyaluran_makanan')}}"
-                                                class="waves-effect waves-dark">
+                                            <a href="{{url('admin/list_bantuan')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-=======
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Input Bantuan</span>
+                                                    data-i18n="nav.basic-components.breadcrumbs">List Bantuan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li> -->
-                                    </ul>
-                                </li>
-                                @if(Request::segment(2)== 'penyaluran_makanan' ||Request::segment(2)== 'penyaluran_dana'
-                                )
-                                <li class="pcoded-hasmenu active pcoded-trigger">
-                                    @else
-                                <li class="pcoded-hasmenu">
-                                    @endif
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="bi bi-box-arrow-up-right"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Penyaluran
-                                            Bantuan</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        @if(Request::segment(2)== 'penyaluran_makanan')
+                                        </li>
+
+                                        <!-- @if(Request::segment(2)== 'penyaluran_makanan')
                                         <li class="active">
                                             @else
                                         <li class="">
@@ -260,7 +234,6 @@
                                                 class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                                     data-i18n="nav.basic-components.alert">Penyaluran Makanan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
@@ -276,10 +249,11 @@
                                                     data-i18n="nav.basic-components.breadcrumbs">Penyaluran Dana</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
+                                        </li> -->
 
                                     </ul>
                                 </li>
+
                                 @if(Request::segment(2)== 'laporan_bantuan_masuk' ||Request::segment(2)==
                                 'laporan_bantuan_makanan' ||Request::segment(2)== 'laporan_bantuan_dana' ||
                                 Request::segment(2)==
@@ -296,7 +270,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        @if(Request::segment(2)== 'laporan_bantuan_masuk')
+                                        <!-- @if(Request::segment(2)== 'laporan_bantuan_masuk')
                                         <li class="active">
                                             @else
                                         <li class="">
@@ -308,7 +282,7 @@
                                                     data-i18n="nav.basic-components.alert">Laporan Bantuan Masuk</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         @if(Request::segment(2)== 'laporan_bantuan_makanan')
                                         <li class="active">
                                             @else
@@ -323,6 +297,7 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @if(Auth::user()->role_user != 'volunteer')
                                         @if(Request::segment(2)== 'laporan_bantuan_dana')
                                         <li class="active">
                                             @else
@@ -332,25 +307,12 @@
                                                 class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Bantuan
-                                                    Dana</span>
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Dana
+                                                    Masuk</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        @if(Request::segment(2)== 'laporan_penyaluran_bantuan')
-                                        <li class="active">
-                                            @else
-                                        <li class="">
-                                            @endif
-                                            <a href="{{url('admin/laporan_penyaluran_bantuan')}}"
-                                                class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Penyaluran
-                                                    Bantuan</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
+                                        @endif
                                         @if(Request::segment(2)== 'laporan_penyaluran_makanan')
                                         <li class="active">
                                             @else
@@ -365,6 +327,8 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @if(Auth::user()->role_user != 'volunteer')
+
                                         @if(Request::segment(2)== 'laporan_penyaluran_dana')
                                         <li class="active">
                                             @else
@@ -374,13 +338,29 @@
                                                 class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
-                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Penyaluran
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan Pengeluaran
+                                                    Dana
+                                                </span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        @if(Request::segment(2)== 'laporan_dana')
+                                        <li class="active">
+                                            @else
+                                        <li class="">
+                                            @endif
+                                            <a href="{{url('admin/laporan_dana')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.basic-components.breadcrumbs">Laporan
                                                     Dana</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @endif
                                     </ul>
                                 </li>
+
                                 @if(Request::segment(2)== 'user_list' || Request::segment(2)==
                                 'volunteer' )
                                 <li class="pcoded-hasmenu active pcoded-trigger">
@@ -406,6 +386,7 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @if(Auth::user()->role_user == 'admin' || Auth::user()->role_user == 'ceo' )
                                         @if(Request::segment(2)== 'volunteer')
                                         <li class="active">
                                             @else
@@ -418,6 +399,7 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        @endif
                                         <!-- <li class=" ">
                                             <a href="{{url('admin/bantuan_dana')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>

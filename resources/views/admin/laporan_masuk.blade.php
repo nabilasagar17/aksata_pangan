@@ -46,120 +46,167 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Laporan Bantuan</h5>
+                            <form class="form-inline my-2">
+                                <label class="  col-form-label mx-2">Tgl.Mulai</label>
 
+                                <input type="date" required id="appt " name="start" value="{{Request::input('start')}}">
+
+
+
+                                <label class="  col-form-label mx-2">Tgl.Akhir</label>
+
+                                <input type="date" id="appt" name="end" value="{{Request::input('end')}}" required>
+
+                                <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
+
+                            </form>
                             <div class="card-header-right">
-<<<<<<< HEAD
-                                <a type='button' href="{{url('admin/print_laporan_masuk')}}"
+                                @if(Request::segment(2) == 'laporan_bantuan_dana')
+                                <a type='button' href="{{url('admin/laporan_bantuan_dana_report')}}"
                                     class="btn btn-mat waves-effect waves-light btn-primary ">Print</a>
-=======
-                                <ul class="list-unstyled card-option">
-                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
-                                </ul>
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
+                                @else
+                                <a type='button' href="{{url('admin/laporan_bantuan_makanan_report')}}"
+                                    class="btn btn-mat waves-effect waves-light btn-primary ">Print</a>
+                                @endif
                             </div>
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
-<<<<<<< HEAD
                                         @if(Request::segment(2) == 'laporan_bantuan_dana')
                                         <tr>
                                             <th>No</th>
-
+                                            <th>Gambar</th>
+                                            <th>Tanda Tangan</th>
                                             <th>Nama Pengirim</th>
                                             <th>Alamat Pengirim</th>
-                                            <th>Kategori</th>
+
                                             <th>Jlh</th>
-                                            <th>Jlh.Belum Disebar</th>
-                                            <th>Jlh.Sisa Disebar</th>
+
+
                                             <th>Pengiriman</th>
 
                                             <th>Tgl.Masuk</th>
-                                            <th>Aksi</th>
+                                            <!-- <th>Aksi</th> -->
                                         </tr>
                                         @else
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
+                                            <th>Tanda Tangan</th>
                                             <th>Nama Barang</th>
                                             <th>Nama Pengirim</th>
-                                            <th>Alamat Pengirim</th>
+                                            <th>No.Telp Pengirim</th>
                                             <th>Kategori</th>
                                             <th>Qty</th>
-                                            <th>Sisa Belum Disebar</th>
+                                            <th>Qty Masuk</th>
                                             <th>Sisa Disebar</th>
-                                            <th>Berat</th>
+
                                             <th>Satuan Barang</th>
                                             <th>Harga</th>
                                             <th>Pengiriman</th>
 
                                             <th>Tgl.Exp</th>
                                             <th>Tgl.Masuk</th>
-                                            <th>Aksi</th>
+                                            <!-- <th>Aksi</th> -->
                                         </tr>
 
                                         @endif
                                     </thead>
                                     <tbody>
+                                        <?php  $no = 15 * ( (Request::input('page') != '' ? Request::input('page') : 1) - 1) + 1; ?>
 
                                         @foreach($data as $datas)
                                         @if(Request::segment(2) == 'laporan_bantuan_dana')
                                         <tr>
                                             <td scope="row">{{$no++}}</td>
-                                            <td>{{$datas->harga}}</td>
-                                            <td>{{$datas->sisa_belum_tersebar}}</td>
-                                            <td>{{$datas->sisa_disebar}}</td>
+                                            <td>@if($datas->file_path != "")
+                                                <div class="d-flex align-items-center">
+                                                    <img width="150" height="100"
+                                                        src="{{asset('img/bukti_masuk/'. $datas->file_path)}}" alt="" />
+                                                </div>
+
+                                                @endif
+                                            </td>
+                                            @if($datas->path_ttd_pemberi == "")
+                                            <td>
+                                            </td>
+                                            @else
+                                            <td>
+                                                <div class="d-flex align-items-center">
+
+                                                    <img width="150" height="100"
+                                                        src="{{asset('file_ttd_masuk/'. $datas->path_ttd_pemberi)}}"
+                                                        alt="" />
+                                                </div>
+                                            </td>
+                                            @endif
+                                            <td>{{$datas->nama_pemberi}}</td>
+                                            <td>{{$datas->no_telp_pemberi}}</td>
+                                            <td>{{number_format($datas->qty)}}</td>
+
                                             <td>{{$datas->pengiriman}}</td>
 
-                                            <td>{{$datas->tgl_masuk}}</td>
-                                            <td><button class="btn waves-effect waves-light btn-primary"><i
-                                                        class="icofont icofont-user-alt-3"></i></button>
-                                            </td>
+                                            <td>{{date('d-m-Y', strtotime($datas->tgl_masuk))}}</td>
+                                            <!-- <td><button class="btn  btn-success btn-sm"><i
+                                                        class="ti-pencil fa-sm"></i></button>
+                                                <button class="btn  btn-danger btn-sm"><i
+                                                        class="ti-trash fa-sm"></i></button>
+                                            </td> -->
                                         </tr>
 
                                         @else
                                         <tr>
                                             <td scope="row">{{$no++}}</td>
+                                            <td>@if($datas->file_path != "")
+                                                <div class="d-flex align-items-center">
+                                                    <img width="150" height="100"
+                                                        src="{{asset('img/bukti_masuk/'. $datas->file_path)}}" alt="" />
+                                                </div>
+
+                                                @endif
+                                            </td>
+                                            @if($datas->path_ttd_pemberi == "")
+                                            <td>
+                                            </td>
+                                            @else
+                                            <td>
+                                                <div class="d-flex align-items-center">
+
+                                                    <img width="150" height="100"
+                                                        src="{{asset('file_ttd_masuk/'. $datas->path_ttd_pemberi)}}"
+                                                        alt="" />
+                                                </div>
+                                            </td>
+                                            @endif
                                             <td>{{$datas->nama}}</td>
+                                            <td>{{$datas->nama_pemberi}}</td>
+                                            <td>{{$datas->no_telp_pemberi}}</td>
                                             <td>{{$datas->kategori}}</td>
-                                            <td>{{$datas->qty}}</td>
-                                            <td>{{$datas->sisa_belum_tersebar}}</td>
+                                            <td>{{number_format($datas->qty)}}</td>
+                                            <td>{{number_format($datas->qty_masuk)}}</td>
                                             <td>{{$datas->sisa_disebar}}</td>
-                                            <td>{{$datas->berat}}</td>
+
                                             <td>{{$datas->satuan_barang}}</td>
                                             <td>{{$datas->harga}}</td>
                                             <td>{{$datas->pengiriman}}</td>
-                                            <td>{{$datas->exp_date}}</td>
-                                            <td>{{$datas->tgl_masuk}}</td>
-                                            <td><button class="btn waves-effect waves-light btn-primary"><i
-                                                        class="icofont icofont-user-alt-3"></i></button>
-                                            </td>
+                                            <td>{{date('d-m-Y', strtotime($datas->exp_date))}}</td>
+                                            <td>{{date('d-m-Y', strtotime($datas->tgl_masuk))}}</td>
+                                            <!-- <td><button class="btn  btn-success btn-sm"><i
+                                                        class="ti-pencil fa-sm"></i></button>
+                                                <button class="btn  btn-danger btn-sm"><i
+                                                        class="ti-trash fa-sm"></i></button>
+                                            </td> -->
                                         </tr>
                                         @endif
                                         @endforeach
-=======
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Bantuan</th>
-                                            <th>Kategori</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="m-datatable__pager m-datatable--paging-loaded clearfix my-2">
+                                {!! $data->appends(Request::all())->links() !!}
                             </div>
                         </div>
                     </div>

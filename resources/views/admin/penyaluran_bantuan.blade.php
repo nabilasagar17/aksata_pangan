@@ -41,11 +41,47 @@
                 <!-- Page-body start -->
                 <div class="page-body">
 
+                    <!-- Start Modal Hapus -->
+
+                    <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Stok Bantuan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{url('admin/delete_penyaluran_bantuan')}}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 my-2">
+                                                <h6> Sistem secara otomatis akan menghapus yang berhubungan dengan data
+                                                    ini,hapus data stok ini?
+                                                </h6>
+                                                <input type="text" name="id" hidden>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Ya, Hapus</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End modal hapus -->
 
                     <!-- Hover table card start -->
                     <div class="card">
                         <div class="card-header">
-<<<<<<< HEAD
                             <div class="row">
                                 <div class="col-lg-10">
                                     <h5>Table Penyaluran Bantuan</h5>
@@ -60,19 +96,6 @@
                                 </div>
                             </div>
 
-=======
-                            <h5>Hover Table</h5>
-
-                            <div class="card-header-right">
-                                <ul class="list-unstyled card-option">
-                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
-                                </ul>
-                            </div>
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                         </div>
                         <div class="card-block table-border-style">
                             <div class="table-responsive">
@@ -81,7 +104,6 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Bantuan</th>
-<<<<<<< HEAD
                                             <th>Jumlah</th>
                                             <th>Keperluan</th>
                                             <th>Pengiriman</th>
@@ -98,7 +120,7 @@
 
                                         @foreach($data as $datas)
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row">{{$no++}}</th>
                                             <td>{{$datas->nama}}</td>
                                             <td>{{$datas->qty}}</td>
                                             <td>{{$datas->keperluan}}</td>
@@ -106,28 +128,16 @@
                                             <td>{{$datas->keterangan}}</td>
                                             <td>{{$datas->nama_penerima}}</td>
                                             <td>{{$datas->alamat_penerima}}</td>
-                                            <td>{{$datas->created_at}}</td>
-                                            <td><button class="btn  btn-success btn-sm"><i
-                                                        class="ti-pencil fa-sm"></i></button>
-                                                <button class="btn  btn-danger btn-sm"><i
+                                            <td>{{date('d-m-Y', strtotime($datas->created_at))}}</td>
+                                            <td>
+                                                <!-- <button class="btn  btn-success btn-sm"><i
+                                                        class="ti-pencil fa-sm"></i></button> -->
+                                                <button onClick="hapus('{{ $datas->id}}')"
+                                                    class="btn  btn-danger btn-sm"><i
                                                         class="ti-trash fa-sm"></i></button>
                                             </td>
                                         </tr>
                                         @endforeach
-=======
-                                            <th>Kategori</th>
-                                            <th>Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                                     </tbody>
                                 </table>
                             </div>
@@ -147,3 +157,10 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript">
+function hapus(id) {
+    $('#hapus').modal('show');
+    $('input[name="id"]').val(id);
+
+}
+</script>

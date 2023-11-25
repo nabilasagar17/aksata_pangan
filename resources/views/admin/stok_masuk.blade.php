@@ -45,6 +45,44 @@ use Illuminate\Support\Carbon;
                 <!-- Page-body start -->
                 <div class="page-body">
 
+                    <!-- Start Modal Hapus -->
+
+                    <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Stok Bantuan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{url('admin/delete_stok_masuk')}}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12 my-2">
+                                                <h6> Sistem secara otomatis akan menghapus yang berhubungan dengan data
+                                                    ini,hapus data stok ini?
+                                                </h6>
+                                                <input type="text" name="id" hidden>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Ya, Hapus</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End modal hapus -->
+
 
                     <!-- Hover table card start -->
                     <div class="card">
@@ -52,26 +90,23 @@ use Illuminate\Support\Carbon;
                             <div class="col-lg-8">
                                 <h5>Table Bantuan Masuk</h5>
                             </div>
-
+                            <form class="form-inline my-2">
+                                <input class="form-control mr-sm-2" value="{{Request::input('search')}}" name="search"
+                                    type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
+                            </form>
                             <div class="card-header-right">
-<<<<<<< HEAD
 
                                 <a type='button' href="{{url('admin/preview_barang_masuk')}}"
                                     class="btn btn-mat waves-effect waves-light btn-primary ">Input Data</a>
+                                @if(Request::segment(2) == 'food_bank')
                                 <a type='button' href="{{url('admin/preview_barang_keluar')}}"
-                                    class="btn btn-mat waves-effect waves-light btn-danger">Penyaluran Barang</a>
+                                    class="btn btn-mat waves-effect waves-light btn-danger">Penyaluran Makanan</a>
+                                @else
+                                <button type='button' data-toggle="modal" data-target="#tambah_dana"
+                                    class="btn btn-mat waves-effect waves-light btn-danger">Penyaluran Dana</button>
+                                @endif
 
-=======
-                                <button class="btn btn-mat waves-effect waves-light btn-primary "><i
-                                        class="ti-plus"></i>Tambah</button>
-                                <!-- <ul class="list-unstyled card-option">
-                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
-                                </ul> -->
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
                             </div>
                         </div>
                         <div class="card-block table-border-style">
@@ -81,16 +116,18 @@ use Illuminate\Support\Carbon;
                                         @if(Request::segment(2) == 'food_bank')
                                         <tr>
                                             <th>No</th>
+
                                             <th>Nama Barang</th>
-                                            <th>Nama Pengirim</th>
-                                            <th>Alamat Pengirim</th>
+                                            <th>Nama Donatur</th>
+                                            <th>No.Telp Donatur</th>
                                             <th>Kategori</th>
                                             <th>Qty</th>
-                                            <th>Sisa Belum Disebar</th>
-                                            <th>Sisa Disebar</th>
-                                            <th>Berat</th>
+                                            <th>Qty Masuk</th>
+                                            <th>Jlh.Disebar</th>
+
                                             <th>Satuan Barang</th>
                                             <th>Harga</th>
+                                            <th>Total</th>
                                             <th>Pengiriman</th>
 
                                             <th>Tgl.Exp</th>
@@ -101,58 +138,145 @@ use Illuminate\Support\Carbon;
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Nama Pengirim</th>
-                                            <th>Alamat Pengirim</th>
-                                            <th>Kategori</th>
-                                            <th>Jlh</th>
-                                            <th>Jlh.Belum Disebar</th>
-                                            <th>Jlh.Sisa Disebar</th>
-                                            <th>Pengiriman</th>
 
-                                            <th>Tgl.Masuk</th>
+
+                                            <th>Total Dana</th>
+
+                                            <th>Jlh.Disebar</th>
+
+
                                             <th>Aksi</th>
                                         </tr>
                                         @endif
                                     </thead>
                                     <tbody>
+                                        <?php  $no = 15 * ( (Request::input('page') != '' ? Request::input('page') : 1) - 1) + 1; ?>
 
                                         @foreach($data as $datas)
                                         @if(Request::segment(2) == 'food_bank')
                                         <tr>
                                             <td scope="row">{{$no++}}</td>
+
                                             <td>{{$datas->nama}}</td>
+                                            <td>{{$datas->nama_pemberi}}</td>
+                                            <td>{{$datas->no_telp_pemberi}}</td>
                                             <td>{{$datas->kategori}}</td>
                                             <td>{{$datas->qty}}</td>
-                                            <td>{{$datas->sisa_belum_tersebar}}</td>
+                                            <td>{{$datas->qty_masuk}}</td>
                                             <td>{{$datas->sisa_disebar}}</td>
-                                            <td>{{$datas->berat}}</td>
+
                                             <td>{{$datas->satuan_barang}}</td>
-                                            <td>{{$datas->harga}}</td>
+                                            <td>Rp.{{number_format($datas->harga)}}</td>
+                                            <td>Rp.{{number_format($datas->total)}}</td>
                                             <td>{{$datas->pengiriman}}</td>
-                                            <td>{{$datas->exp_date}}</td>
-                                            <td>{{$datas->tgl_masuk}}</td>
-                                            <td><button class="btn waves-effect waves-light btn-primary"><i
-                                                        class="icofont icofont-user-alt-3"></i></button>
+                                            <td> {{date('d-m-Y', strtotime($datas->exp_date))}}</td>
+                                            <td>{{date('d-m-Y', strtotime($datas->tgl_masuk))}}</td>
+                                            <td>
+                                                <!-- <button class="btn  btn-success btn-sm"><i
+                                                        class="ti-pencil fa-sm"></i></button> -->
+                                                <button class="btn  btn-danger btn-sm"
+                                                    onClick="hapus('{{ $datas->id}}')"><i
+                                                        class="ti-trash fa-sm"></i></button>
                                             </td>
                                         </tr>
                                         @else
                                         <tr>
                                             <td scope="row">{{$no++}}</td>
-                                            <td>{{$datas->harga}}</td>
-                                            <td>{{$datas->sisa_belum_tersebar}}</td>
-                                            <td>{{$datas->sisa_disebar}}</td>
-                                            <td>{{$datas->pengiriman}}</td>
 
-                                            <td>{{$datas->tgl_masuk}}</td>
-                                            <td><button class="btn waves-effect waves-light btn-primary"><i
-                                                        class="icofont icofont-user-alt-3"></i></button>
+                                            <td>Rp.{{number_format($datas->harga)}}</td>
+                                            <td>Rp.{{number_format($datas->sisa_disebar)}}</td>
+
+
+                                            <td><a href="{{url('admin/bantuan_dana/detail_dana_masuk')}}"
+                                                    class="btn  btn-primary btn-sm"><i class="ti-eye fa-sm"></i></a>
+                                                <!-- <button class="btn  btn-success btn-sm"><i
+                                                        class="ti-pencil fa-sm"></i></button> -->
+
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="tambah_dana" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Dana</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{url('admin/insert_dana_keluar')}}" method="post"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="row">
+
+                                                                <div class="col-sm-6 ">
+                                                                    <label class="col-sm-12  col-form-label">Jumlah
+                                                                        Dana</label>
+                                                                    <div class="col-sm-12 mb-3">
+                                                                        <input type="number" name="qty"
+                                                                            max="{{$datas->harga}}"
+                                                                            class="form-control">
+                                                                        <input hidden type="text" name="id"
+                                                                            value="{{$datas->id}}" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 ">
+                                                                    <label
+                                                                        class="col-sm-12  col-form-label">Keperluan</label>
+                                                                    <div class="col-sm-12 mb-3">
+                                                                        <select name="keperluan" class="form-control">
+                                                                            <option>Pilih keperluan</option>
+
+                                                                            <option value="Pelaksanaan Program">
+                                                                                Pelaksanaan Program
+                                                                            </option>
+                                                                            <option value="Keperluan Operasional">
+                                                                                Keperluan Operasional
+                                                                            </option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 ">
+                                                                    <label class="col-sm-12  col-form-label">Nama
+                                                                        Penangung Jawab</label>
+                                                                    <div class="col-sm-12 mb-3">
+                                                                        <input type="text" name="nama"
+                                                                            class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 ">
+                                                                    <label
+                                                                        class="col-sm-12  col-form-label">Keterangan</label>
+                                                                    <div class="col-sm-12 mb-3">
+                                                                        <Textarea type="text" name="keterangan"
+                                                                            class="form-control"></Textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                         @endif
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="m-datatable__pager m-datatable--paging-loaded clearfix my-2">
+                                {!! $data->appends(Request::all())->links() !!}
+                            </div>
+
                         </div>
                     </div>
                     <!-- Hover table card end -->
@@ -168,7 +292,6 @@ use Illuminate\Support\Carbon;
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
 <style>
 .kbw-signature {
@@ -192,7 +315,11 @@ $('#clear').click(function(e) {
     sig.signature('clear');
     $("#signature64").val('');
 });
+
+function hapus(id) {
+    $('#hapus').modal('show');
+    $('input[name="id"]').val(id);
+
+}
 </script>
-=======
->>>>>>> 361d3b814366993f6c2d4bc60fa8136a6c7346f4
 @endsection
